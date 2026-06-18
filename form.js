@@ -19,6 +19,8 @@ if (!participantId) {
 
 const params = new URLSearchParams(window.location.search);
 const step = params.get("step");
+const langFromUrl = params.get("lang");
+const savedLang = localStorage.getItem("language");
 
 function openSurvey(lang) {
   localStorage.setItem("language", lang);
@@ -35,10 +37,15 @@ function openSurvey(lang) {
     );
 }
 
-document.getElementById("de").addEventListener("click", () => {
-  openSurvey("de");
-});
+if (step === "2") {
+  const lang = langFromUrl || savedLang || "de";
+  openSurvey(lang);
+} else {
+  document.getElementById("de").addEventListener("click", () => {
+    openSurvey("de");
+  });
 
-document.getElementById("en").addEventListener("click", () => {
-  openSurvey("en");
-});
+  document.getElementById("en").addEventListener("click", () => {
+    openSurvey("en");
+  });
+}
