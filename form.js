@@ -38,10 +38,6 @@ function openSurvey(lang) {
 }
 
 if (step === "2") {
-console.log("FULL URL:", window.location.href);
-console.log("SEARCH:", window.location.search);
-console.log("STEP:", step);
-console.log("LANG:", langFromUrl);
   const lang = langFromUrl || savedLang || "de";
   openSurvey(lang);
 } else {
