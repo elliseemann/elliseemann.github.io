@@ -1,3 +1,15 @@
+
+const forms = {
+    de: {
+        part1: "https://docs.google.com/forms/d/e/1FAIpQLSfkaOUrLIktxYutZaIY9RP1_xEDkhWLa4ujAG5F7at8k2Xslw/viewform?usp=pp_url&entry.1511166651=TEST_ID",
+        part2: "https://docs.google.com/forms/d/e/1FAIpQLSdNGlBYqJwkd8_ul2SLJ-UusCqzrzojr1qWzdhUp0NEcv3Rjg/viewform?usp=pp_url&entry.1974898686=TEST_ID"
+    },
+    en : {
+        part1: "https://docs.google.com/forms/d/e/1FAIpQLScRLdHqx_34bzbV1PjAk8y-WGCx-VcgF_Tp8MWAJiF2qoH_Sw/viewform?usp=pp_url&entry.1511166651=TEST_ID",
+        part2: "https://docs.google.com/forms/d/e/1FAIpQLSdpZHA5nzEFQsw1APLsl8LCnfQWC1VIWHahiZJLCuy4rmEBLw/viewform?usp=pp_url&entry.1974898686=TEST_ID"
+    }
+}
+
 let participantId = localStorage.getItem("participantId");
 
 if (!participantId) {
@@ -5,21 +17,28 @@ if (!participantId) {
   localStorage.setItem("participantId", participantId);
 }
 
-const step = "<?= step ?>";
+const params = new URLSearchParams(window.location.search);
+const step = params.get("step");
 
-const formUrl1 =
-  "https://docs.google.com/forms/d/e/1FAIpQLScRLdHqx_34bzbV1PjAk8y-WGCx-VcgF_Tp8MWAJiF2qoH_Sw/viewform?usp=pp_url&entry.1511166651=TEST_ID";
+function openSurvey(lang) {
+  localStorage.setItem("language", lang);
 
-const formUrl2 =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdpZHA5nzEFQsw1APLsl8LCnfQWC1VIWHahiZJLCuy4rmEBLw/viewform?usp=pp_url&entry.1974898686=TEST_ID";
+  const targetForm =
+    step === "2"
+      ? forms[lang].part2
+      : forms[lang].part1;
 
-const targetForm =
-  step === "2" ? formUrl2 : formUrl1;
+  window.location.href =
+    targetForm.replace(
+      "TEST_ID",
+      encodeURIComponent(participantId)
+    );
+}
 
-const finalUrl =
-  targetForm.replace(
-    "TEST_ID",
-    encodeURIComponent(participantId)
-  );
+document.getElementById("de").addEventListener("click", () => {
+  openSurvey("de");
+});
 
-window.location.href = finalUrl;
+document.getElementById("en").addEventListener("click", () => {
+  openSurvey("en");
+});
