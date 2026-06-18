@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+header {
+    margin-top: 8px;
+    margin-left: 8px;
+}
+#logo-hs-harz {
+    width: 300px;
+    margin-bottom: 30px;
+}
+
+#content {
+    margin: 0px 8px 0px 8px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+
+}
+
+.content-wrapper button {
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+    padding-top: 5px;
+}
+
+footer span a {
+    text-decoration: none;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    #content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .content-wrapper {
+        width: 95%;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    #logo-hs-harz {
+        width: 400px;
+    }
+
+    .content-wrapper {
+        width: 75%;
+        text-align: justify;
+    }
+
+    .content-wrapper h2 {
+        font-size: 2em;
+    }
+
+    .content-wrapper h4 {
+        font-size: 1.5em;
+    }
+
+    .content-wrapper button {
+        font-size: 24px;
+        height: 100px;
+        width: 300px;
+    }
+}
